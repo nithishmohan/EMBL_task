@@ -12,11 +12,11 @@ config = Config(".env")
 
 DEBUG: bool = config("DEBUG", cast=bool, default=False)
 
-HOST:str = config("HOST",cast=str,default="127.0.0.1")
+HOST:str = config("HOST",cast=str,default="embl_redis")
 PORT:int = config("PORT",cast=int,default=6379)
 INDEX: int = config("PORT", cast=int, default=0)
 
-TEST_HOST:str = config("HOST",cast=str,default="127.0.0.1")
+TEST_HOST:str = config("HOST",cast=str,default="embl_redis")
 TEST_PORT:int = config("PORT",cast=int,default=6379)
 TEST_INDEX: int = config("PORT", cast=int, default=1)
 

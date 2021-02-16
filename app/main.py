@@ -1,13 +1,12 @@
-from urllib.request import Request
-
-from fastapi import FastAPI
 import uvicorn
+from urllib.request import Request
+from fastapi import FastAPI
 from fastapi_jwt_auth import AuthJWT
 from starlette.responses import JSONResponse
 
-from app.api.routes.api import router as api_router
+from app.api.routes.index import router as api_router
 from app.helper import connect, close
-from fastapi_jwt_auth.exceptions import AuthJWTException
+from fastapi_jwt_auth.exceptions import AuthJWTException, AccessTokenRequired
 from pydantic import BaseModel
 from config.app_config import HOST, PORT, INDEX
 
@@ -41,7 +40,7 @@ def get_config():
 
 
 @app.exception_handler(AuthJWTException)
-def authjwt_exception_handler(request: Request, exc: AuthJWTException):
+def authjwt_exception_handler(request: Request, exc: AccessTokenRequired):
     return JSONResponse(
         status_code=exc.status_code,
         content={"detail": exc.message})

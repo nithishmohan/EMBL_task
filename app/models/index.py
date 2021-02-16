@@ -13,6 +13,6 @@ class Name(BaseModel):
     last_name: str
 
 
-class User(BaseModel):
+class Admin(BaseModel):
     username: str
     password: str
