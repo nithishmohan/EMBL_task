@@ -65,10 +65,12 @@ async def person(user: Name, response: Response, cache: RedisCacheBackend = Depe
     name="persons:fetch-user",
     response_model_exclude_unset=True
 )
-async def person(user: Name, response: Response, cache: RedisCacheBackend = Depends(redis_cache),
+async def person(first_name: str, last_name: str, response: Response, cache: RedisCacheBackend = Depends(redis_cache),
                  Authorize: AuthJWT = Depends()) -> Response:
     """
 
+    :param last_name:
+    :param first_name:
     :param user:
     :param cache:
     :param response:
@@ -76,8 +78,8 @@ async def person(user: Name, response: Response, cache: RedisCacheBackend = Depe
     """
     Authorize.jwt_required()
     try:
-        _persons = await cache.get("{0}_{1}".format(user.first_name.lower(),
-                                                    user.last_name.lower()))
+        _persons = await cache.get("{0}_{1}".format(first_name.lower(),
+                                                    last_name.lower()))
         response.status_code = HTTP_200_OK
         return Response(content=_persons)
     except Exception as e:

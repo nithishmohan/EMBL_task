@@ -24,7 +24,7 @@ services:
   web:
     build: .
     container_name: app_server
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8080
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --workers 4
     volumes:
       - .:/app
     expose:
