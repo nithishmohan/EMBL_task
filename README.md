@@ -20,3 +20,10 @@ Making Requests
 ---------------
 
 Please go to `http://localhost:80/docs` to find more about the API documentation. 
+
+
+Admin Credentials
+---------------
+
+username : admin
+password : password
